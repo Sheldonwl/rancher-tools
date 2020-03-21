@@ -21,3 +21,6 @@ docker run -dit --name dev --mount source=data,target=/data dev-container /bin/b
 # Attach to the container to run commands from there
 docker exec -it dev bash
 ```
+
+### Setup Rancher
+See the **scripts/rancher/setup-rancher-with-rke.sh** script for setting up Rancher. 
