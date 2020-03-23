@@ -26,11 +26,11 @@ sudo rm -rf linux-amd64
 sudo rm -f helm.tar.gz
 helm version --client
 
-# Create a rancher-cluster.yml file
+# Create a rancher-cluster.yml file. Enter IP address for the node. 
 cat << EOF > rancher-cluster.yml
 nodes:  
-  - address: 
-    internal_address: 
+  - address: [PUBLIC IP]
+#    internal_address: [PRIVATE IP]
     user: ubuntu
     role: [controlplane,etcd,worker]
 addon_job_timeout: 120
@@ -55,6 +55,7 @@ kubectl -n cert-manager rollout status deploy/cert-manager-webhook
 helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
 helm repo update
 kubectl create namespace cattle-system
+# You have to add a hostname, that Rancher will use for all communication.
 helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=ADD-HOSTNAME --set replicas=1
 # helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=ADD-HOSTNAME --set replicas=1 --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=ADD-EMAIL
 
