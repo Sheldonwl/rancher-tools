@@ -68,3 +68,10 @@ sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 alias k=kubectl >> /root/.bashrc
 alias kx=kubectx >> /root/.bashrc
 alias ns=kubens >> /root/.bashrc
+
+# Upgrade Rancher
+#helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
+#helm repo update
+#helm fetch rancher-latest/rancher
+#helm get values rancher -n cattle-system
+#helm upgrade rancher rancher-latest/rancher --namespace cattle-system --set hostname= --set replicas=1 --set ingress.tls.source= --set letsEncrypt.email=
